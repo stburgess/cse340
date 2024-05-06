@@ -1,7 +1,7 @@
 {
   "name": "cse340",
   "version": "1.0.0",
-  "description": "Starter project for CSE 340",
+  "description": "Project for CSE 340",
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
