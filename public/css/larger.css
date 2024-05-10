@@ -1,10 +1,13 @@
 /* Larger Views ******************************/
 @media (min-width: 700px) {
   body {
-    margin: 15px 80px 15px 80px;
     background-image: url('../images/site/small_check.jpg');
     border-radius: 10px;
     border: solid 4px var(--borderColor);
+    margin-left: max(80px, 12%);
+    margin-right: max(80px, 12%);
+    margin-top: 15px;
+    margin-bottom: 15px;
   }
 
   #top-header {
@@ -78,4 +81,6 @@
     text-align: left;
     margin-bottom: 1em;
   }
+
+  
 }
