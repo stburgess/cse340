@@ -23,7 +23,7 @@
   main {
     grid-template-columns: 1fr 1fr;
     grid-template-rows: auto auto;
-    column-gap: 10px;
+    column-gap: 5%;
   }
 
   h1 {
