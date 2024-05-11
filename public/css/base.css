@@ -212,7 +212,7 @@ footer {
   border-radius: 5px;
   border: solid 2px var(--textColor);
   padding: 5px;
-  height: 220px;
+  height: 230px;
   list-style-type: none;
   text-align: center;
   font-size: 1rem;
@@ -234,13 +234,38 @@ footer {
   height: 50px;
   width: 100%;
   position: absolute;
-  top: 145px;
+  top: 160px;
   left: -10px;
   line-height: 1.25rem;
 }
 
 .namePrice a {
   font-size: 1rem;
+}
+
+#inv-detail1 img {
+  border-radius: 10px;
+  width: 100%;
+  height: auto;
+}
+
+#inv-detail2 {
+  border: solid 2px var(--borderColor);
+  border-radius: 10px;
+  padding: 20px 20px 10px 20px;
+}
+
+#inv-detail2 h2{
+  font-size: 1.2rem;
+}
+
+#inv-detail2 ul {
+  margin: 10px 10px 0px 0px;
+  list-style-type: none;
+}
+
+#inv-detail2 li {
+  padding: 7px 0px 7px 0px;
 }
 
 

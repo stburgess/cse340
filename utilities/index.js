@@ -57,6 +57,35 @@ Util.buildClassificationGrid = async function(data){
   return grid
 }
 
+/* **************************************
+* Build the detail view HTML
+* ************************************ */
+Util.buildDetailGrid = async function(data){
+  let grid
+  if(data.length > 0){
+    const vehicle = data[0]
+    /*Section showing only title and image*/
+    grid = '<div id="inv-detail1">'
+      grid += '<img src="' + vehicle.inv_image +'" alt="Image of '+ vehicle.inv_make + 
+      ' ' + vehicle.inv_model +' on CSE Motors" >'
+    grid += '</div>'
+    /*Section showing all the details*/
+    grid += '<div id="inv-detail2">'
+      grid += '<h2>' + vehicle.inv_make + ' ' + vehicle.inv_model + ' ' + 'Details' + '</h2>'
+      grid += '<ul>'
+      grid += '<li><span>' + 'Price: ' + '$' + new Intl.NumberFormat('en-US').format(vehicle.inv_price) + '</span></li>'
+      grid += '<li><span>' + 'Miles: ' + vehicle.inv_miles + '</span></li>'
+      grid += '<li><span>' + 'Color: ' + vehicle.inv_color + '</span></li>'
+      grid += '<li><span>' + 'Year: ' + vehicle.inv_year + '</span></li>'
+      grid += '<li><span>' + 'Description: ' + vehicle.inv_description + '</span></li>'
+      grid += '</ul>'
+    grid += '</div>'
+  } else { 
+    grid += '<p class="notice">Sorry, no details could be found for this vehicle.</p>'
+  }
+  return grid
+}
+
 /* ****************************************
  * Middleware For Handling Errors
  * Wrap other function in this for 
