@@ -37,7 +37,7 @@ body {
 .siteName a {
   color: black;
   font-size: 2.5rem;
-  font-weight: 500;
+  font-weight: bold;
   text-decoration: none;
   float: left;
   margin-top: 15px;
@@ -266,6 +266,10 @@ footer {
 
 #inv-detail2 li {
   padding: 7px 0px 7px 0px;
+}
+
+.boldClass {
+  font-weight: bold;
 }
 
 
