@@ -3,7 +3,7 @@
   --buttonColor: blue;
   --borderColor: blue;
   --validColor: green;
-  --invalidColor: red;
+  --invalidColor: rgb(202, 1, 1);
   --backgroundColor: #fff;
 }
 
@@ -269,8 +269,101 @@ footer {
   font-weight: bold;
 }
 
+.form-login {
+  grid-row: 3/4;
+  grid-column: 1/3;
+  display: block;
+  text-align: center;
+  width: 350px;
+  border: 2px solid var(--textColor);
+  border-radius: 6px;
+  background-color: var(--borderColor);
+  color: var(--backgroundColor);
+  font-size: 1.0rem;
+  margin: 0 auto;
+}
+.form-login a {
+  color: var(--backgroundColor);
+}
 
+.form-login p {
+  display: block;
+  color: var(--backgroundColor);
+  margin: 10px 25px 10px 25px;
+  text-align: left;
+  font-size: 0.9rem;
+}
 
+.form-login h3 {
+  margin: 10px auto 10px auto;
+}
+
+.form-login label {
+  display: block;
+  width: 300px;
+  text-align: left;
+  padding: 15px 0 0 0;
+  margin: 0 auto;
+}
+
+#email, #email2, #pw, #pw2, #fname, #lname {
+  background-color: #fafafa;
+  display: block;
+  border: solid 1px #999;
+  border-radius: 5px;
+  padding: 0.5rem;
+  color: var(--textColor);
+  width: 300px;
+  appearance: none;
+  font-size: 1rem;
+}
+
+#fname:required:valid,
+#lname:required:valid,
+#email2:required:valid,
+#pw2:required:valid {
+  border-right: solid 8px var(--validColor);
+}
+
+#fname:required,
+#lname:required,
+#email2:required,
+#pw2:required {
+  border-right: solid 8px var(--invalidColor);
+}
+
+#submit {
+  background: var(--backgroundColor);
+  color: var(--textColor);
+  font-size: 1.25rem;
+  font-weight: bold;
+  border-radius: 6px;
+  padding: 0.5rem;
+  width: 150px;
+  margin: 20px auto 20px auto;
+  box-shadow: 1px 1px 8px #999;
+}
+
+.error-notice {
+  color: var(--invalidColor);
+  padding: 0 0 10px 25px;
+  grid-column: 1/3;
+}
+
+.notice {
+  color: var(--validColor);
+  padding: 0 0 10px 25px;
+}
+
+#title {
+  grid-row: 1/2;
+  grid-column: 1/3;
+}
+
+#messages {
+  grid-row: 2/3;
+  grid-column: 1/3;
+}
 
 
 
