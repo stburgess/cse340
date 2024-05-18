@@ -19,9 +19,9 @@
   </ul>
   <% } %>
 
-<form method="get" action="#" class="form-login">
+<form method="post" action="/account/login" class="form-login">
   <label>Email<input type="email" name="account_email" placeholder="someone@gmail.com" required id="email"></label>
-  <label>Password<input type="password" name="account_password" required id="pw"></label>
+  <label>Password<input type="password" name="account_password" required  pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{12,}$" id="pw"></label>
   <input type="submit" value="Login" id="submit">
   <h3>No Account? <a href="../../account/register/">Sign Up</a></h3>
 </form>

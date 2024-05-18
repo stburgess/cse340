@@ -320,14 +320,18 @@ footer {
 
 #fname:required:valid,
 #lname:required:valid,
+#email:required:valid,
 #email2:required:valid,
+#pw:required:valid,
 #pw2:required:valid {
   border-right: solid 8px var(--validColor);
 }
 
 #fname:required,
 #lname:required,
+#email:required,
 #email2:required,
+#pw:required,
 #pw2:required {
   border-right: solid 8px var(--invalidColor);
 }
