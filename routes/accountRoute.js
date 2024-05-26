@@ -14,7 +14,7 @@ router.get("/register", utilities.handleErrors(accountController.buildRegister))
 // Route to register account
 router.post(
   '/register', 
-  regValidate.registationRules(),
+  regValidate.regRules(),
   regValidate.checkRegData,
   utilities.handleErrors(accountController.registerAccount)
 )
@@ -23,7 +23,7 @@ router.post(
 router.post(
   "/login",
   regValidate.loginRules(),
-  regValidate.checkRegData2,
+  regValidate.checkLogData,
   (req, res) => {
     res.status(200).send('login process')
   }

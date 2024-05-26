@@ -1,0 +1,38 @@
+<div id="title">
+  <% if (title) { %>
+    <h1>
+      <%= title %>
+    </h1>
+    <% } else { res.redirect('/') } %>
+</div>
+
+<%- messages() %>
+
+<% if (errors) { %>
+  <ul class="error-notice">
+    <% errors.array().forEach(error=> { %>
+      <li>
+        <%= error.msg %>
+      </li>
+    <% }) %>
+  </ul>
+<% } %>
+
+<form method="post" action="/inv/add-inventory" class="form-login">
+  <h3>***All Fields are Required***</h3>
+  <hr>
+  <label>Classification Name <%- classificationList %></label> 
+  <label>Make<input type="text" name="inv_make" placeholder="Min of 3 characters" required
+      value="<%= locals.inv_make %>" pattern="^[a-zA-Z]{3,}$" id="make"></label>
+  <label>Model<input type="text" name="inv_model" placeholder="Min of 3 characters" required value="<%= locals.inv_model %>" pattern="^[a-zA-Z0-9_\-]{3,}$" id="model"></label>
+  <label>Description<textarea name="inv_description" placeholder="Min of 3 characters" rows="4" required id="description"><%= locals.inv_description %></textarea></label>
+  <label>Image Path<input type="text" name="inv_image" placeholder="/images/vehicles/vehicle-image.png" required value="<%= locals.inv_image %>" pattern="\/images\/vehicles\/[a-zA-Z0-9_\-]{3,}\.[a-zA-Z]{3,4}$" id="image"></label>
+  <label>Thumbnail Path<input type="text" name="inv_thumbnail" placeholder="/images/vehicles/vehicle-image.png" required value="<%= locals.inv_thumbnail %>" pattern="\/images\/vehicles\/[a-zA-Z0-9_\-]{3,}\.[a-zA-Z]{3,4}$" id="thumbnail"></label>
+  <label>Price<input type="text" name="inv_price" placeholder="Decimal or Integer" required value="<%= locals.inv_price %>" pattern="(^[0-9]{1,}\.[0-9]{2}$)|(^[0-9]+$)" id="price"></label>
+  <label>Year<input type="text" name="inv_year" placeholder="4-digit Year" required value="<%= locals.inv_year %>"
+      pattern="^[0-9]{4}$" id="year"></label>
+  <label>Miles<input type="text" name="inv_miles" placeholder="Digits only" required value="<%= locals.inv_miles %>"
+      pattern="^[0-9]+$" id="miles"></label>
+  <label>Color<input type="text" name="inv_color" placeholder="Min of 3 characters" required value="<%= locals.inv_color %>" pattern="^[a-zA-Z]{3,}$" id="color"></label>
+  <input type="submit" value="Add Vehicle" id="submit">
+</form>

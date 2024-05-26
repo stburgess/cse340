@@ -1,0 +1,24 @@
+<div id="title">
+  <% if (title) { %>
+    <h1>
+      <%= title %>
+    </h1>
+    <% } else { res.redirect('/') } %>
+</div>
+
+<%- messages() %>
+
+<% if (errors) { %>
+  <ul class="error-notice">
+    <% errors.array().forEach(error=> { %>
+      <li>
+        <%= error.msg %>
+      </li>
+    <% }) %>
+  </ul>
+<% } %>
+
+<div id="manage">
+  <h3><a href="/inv/add-classification/">Add new Classification</a></h3>
+  <h3><a href="/inv/add-inventory/">Add new Inventory</a></h3>
+</div>
