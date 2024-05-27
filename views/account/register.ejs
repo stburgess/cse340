@@ -21,8 +21,8 @@
 <form method="post" action="/account/register" class="form-login">
   <h3>***All Fields are Required***</h3>
   <hr>
-  <label>First Name<input type="text" name="account_firstname" required pattern="[a-zA-Z]" value="<%= locals.account_firstname %>" id="fname"></label>
-  <label>Last Name<input type="text" name="account_lastname" value="<%= locals.account_lastname %>" required pattern="[a-zA-Z]" id="lname"></label>
+  <label>First Name<input type="text" name="account_firstname" required pattern="[a-zA-Z]{1,}" value="<%= locals.account_firstname %>" id="fname"></label>
+  <label>Last Name<input type="text" name="account_lastname" value="<%= locals.account_lastname %>" required pattern="[a-zA-Z]{1,}" id="lname"></label>
   <label>Email<input type="email" name="account_email" placeholder="someone@gmail.com" value="<%= locals.account_email %>" required id="email2"></label>
   <label>Password<input type="password" name="account_password" required pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{12,}$" id="pw2"></label>
   <p>Password must have a minimum of 12 characters, contain at least 1 capital letter, at least 1 number, and at least 1 special character</p>
