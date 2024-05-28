@@ -109,7 +109,7 @@ async function accountLogin(req, res) {
 }
 
 /* ****************************************
-*  Deliver register view
+*  Deliver account management view
 * *************************************** */
 async function buildAccountManage(req, res, next) {
   let nav = await utilities.getNav()

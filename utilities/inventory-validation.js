@@ -58,30 +58,30 @@ validate.inventoryRules = () => {
     body("inv_make")
       .trim()
       .escape()
-      .matches(/^[A-Za-z]{3,}$/)
+      .matches(/^[a-zA-Z0-9]{3,}(\s[a-zA-Z0-9_\-]{1,}){0,}$/)
       .withMessage("Please provide a valid Make."), // on error this message is sent.
     body("inv_model")
       .trim()
       .escape()
-      .matches(/^[A-Za-z0-9_\-]{3,}$/)
+      .matches(/^[a-zA-Z0-9]{3,}(\s[a-zA-Z0-9_\-]{1,}){0,}$/)
       .withMessage("Please provide a valid Model."), // on error this message is sent.
     body("inv_description")
       .trim()
       .escape()
-      .isLength({ min: 3 })
+      .isLength({ min: 1 })
       .withMessage("Please provide a valid Description."), // on error this message is sent.
     body("inv_image")
       .trim()
-      .matches(/^\/images\/vehicles\/[a-zA-Z0-9_\-]{3,}\.[a-zA-Z]{3,4}$/)
+      .matches(/^\/images\/vehicles\/[a-zA-Z0-9_\-]{2,}\.[a-zA-Z]{3,4}$/)
       .withMessage("Please provide a valid Image Path."), // on error this message is sent.
     body("inv_thumbnail")
       .trim()
-      .matches(/^\/images\/vehicles\/[a-zA-Z0-9_\-]{3,}\.[a-zA-Z]{3,4}$/)
+      .matches(/^\/images\/vehicles\/[a-zA-Z0-9_\-]{2,}\.[a-zA-Z]{3,4}$/)
       .withMessage("Please provide a valid Thumbnail Image Path."), // on error this message is sent.
     body("inv_price")
       .trim()
       .escape()
-      .matches(/(^[0-9]{1,}\.[0-9]{2}$)|(^[0-9]{1,}$)/)
+      .matches(/(^[0-9]{1,}\.[0-9]{1,2}$)|(^[0-9]{1,}$)/)
       .withMessage("Please provide a valid Price."), // on error this message is sent.
     body("inv_year")
       .trim()
@@ -117,6 +117,84 @@ validate.checkInventoryData = async (req, res, next) => {
       nav,
       classification_id, inv_make, inv_model, inv_year, inv_description, inv_image, inv_thumbnail, inv_price, inv_miles, inv_color,
       classificationList,
+    })
+    return
+  }
+  next()
+}
+
+/***********************************
+ *  Inventory Data Validation Rules
+ ********************************** */
+validate.newInventoryRules = () => {
+  return [
+    // Classification is required and must be string
+    body("classification_id")
+      .trim()
+      .escape()
+      .matches(/^[0-9]{1,}$/)
+      .withMessage("Please select a Classification."), // on error this message is sent.
+    body("inv_make")
+      .trim()
+      .escape()
+      .matches(/^[a-zA-Z0-9]{3,}(\s[a-zA-Z0-9_\-]{1,}){0,}$/)
+      .withMessage("Please provide a valid Make."), // on error this message is sent.
+    body("inv_model")
+      .trim()
+      .escape()
+      .matches(/^[a-zA-Z0-9]{3,}(\s[a-zA-Z0-9_\-]{1,}){0,}$/)
+      .withMessage("Please provide a valid Model."), // on error this message is sent.
+    body("inv_description")
+      .trim()
+      .escape()
+      .isLength({ min: 1 })
+      .withMessage("Please provide a valid Description."), // on error this message is sent.
+    body("inv_image")
+      .trim()
+      .matches(/^\/images\/vehicles\/[a-zA-Z0-9_\-]{2,}\.[a-zA-Z]{3,4}$/)
+      .withMessage("Please provide a valid Image Path."), // on error this message is sent.
+    body("inv_thumbnail")
+      .trim()
+      .matches(/^\/images\/vehicles\/[a-zA-Z0-9_\-]{2,}\.[a-zA-Z]{3,4}$/)
+      .withMessage("Please provide a valid Thumbnail Image Path."), // on error this message is sent.
+    body("inv_price")
+      .trim()
+      .escape()
+      .matches(/(^[0-9]{1,}\.[0-9]{1,2}$)|(^[0-9]{1,}$)/)
+      .withMessage("Please provide a valid Price."), // on error this message is sent.
+    body("inv_year")
+      .trim()
+      .escape()
+      .matches(/^[0-9]{4}$/)
+      .withMessage("Please provide a valid Year."), // on error this message is sent.  
+    body("inv_miles")
+      .trim()
+      .escape()
+      .matches(/^[0-9]{1,}$/)
+      .withMessage("Please provide the Miles."), // on error this message is sent.
+    body("inv_color")
+      .trim()
+      .escape()
+      .matches(/^[A-Za-z]{3,}$/)
+      .withMessage("Please provide a valid Color."), // on error this message is sent. 
+  ]
+}
+
+/* ******************************
+ * Check inventory data and return errors to edit view or return to admin
+ * ***************************** */
+validate.checkUpdateData = async (req, res, next) => {
+  const {classification_id, inv_make, inv_model, inv_year, inv_description, inv_image, inv_thumbnail, inv_price, inv_miles, inv_color, inv_id} = req.body
+  let errors = []
+  errors = validationResult(req)
+  if (!errors.isEmpty()) {
+    let nav = await utilities.getNav()
+    let classificationList = await utilities.buildClassificationList(classification_id)
+    res.render("inventory/edit-inventory", {
+      errors,
+      title: "Edit" + `${inv_make} ${inv_model}`,
+      nav,
+      classification_id, inv_make, inv_model, inv_year, inv_description, inv_image, inv_thumbnail, inv_price, inv_miles, inv_color, inv_id, classificationList
     })
     return
   }
