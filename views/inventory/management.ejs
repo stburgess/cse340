@@ -18,12 +18,13 @@
   </ul>
 <% } %>
 
-<div id="manage">
-  <h3><a href="/inv/add-classification/">Add new Classification</a></h3>
-  <h3><a href="/inv/add-inventory/">Add new Inventory</a></h3>
+<div id="manage" class="form-manage">
+  <h2>Classification and Inventory</h2>
+  <a href="/inv/add-classification/">Add new Classification</a>
+  <a href="/inv/add-inventory/">Add new Inventory</a>
   <h2>Manage Inventory</h2>
   <p>Select a classification from the list to see the items belonging to it.</p>
-  <%- classificationList %>
+  <p><%- classificationList %></p>
   <table id="inventoryDisplay"></table>
   <noscript>JavaScript must be enabled to use this page.</noscript>
 </div>

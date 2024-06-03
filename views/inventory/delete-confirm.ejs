@@ -1,0 +1,33 @@
+<div id="title">
+  <% if (title) { %>
+    <h1>
+      <%= title %>
+    </h1>
+    <% } else { res.redirect('/') } %>
+</div>
+
+<%- messages() %>
+
+<% if (errors) { %>
+  <ul class="error-notice">
+    <% errors.array().forEach(error=> { %>
+      <li>
+        <%= error.msg %>
+      </li>
+    <% }) %>
+  </ul>
+<% } %>
+
+<form method="post" action="/inv/delete-item" class="form-login">
+  <h3>***Delete Confirmation***</h3>
+  <h3>You want to delete this?</h3>
+  <hr>
+  <label>Make<input type="text" name="inv_make" value="<%= locals.inv_make %>" readonly id="make"></label>
+  <label>Model<input type="text" name="inv_model" value="<%= locals.inv_model %>" readonly id="model"></label>
+  <label>Year<input type="text" name="inv_year" value="<%= locals.inv_year %>" readonly id="year"></label>
+  <label>Price<input type="number" name="inv_price" value="<%= locals.inv_price %>" readonly id="price"></label>
+  <input type="submit" value="Delete Item" id="submit6">
+  <input type="hidden" name="inv_id"
+  <% if(locals.inv_id) { %> value="<%= locals.inv_id %>"
+  <% } %>>
+</form>

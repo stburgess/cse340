@@ -1,4 +1,5 @@
 const invModel = require("../models/inventory-model")
+const accountModel = require("../models/account-model")
 const Util = {}
 const jwt = require("jsonwebtoken")
 require("dotenv").config()
@@ -142,6 +143,18 @@ Util.checkJWTToken = (req, res, next) => {
     next()
   } else {
     req.flash("notice", "Please log in.")
+    return res.redirect("/account/login")
+  }
+ }
+
+ /* ****************************************
+ *  Authorize by account type
+ * ************************************ */
+ Util.checkPermission = (req, res, next) => {
+  if (res.locals.loggedin && (res.locals.accountData.account_type == 'Employee' || res.locals.accountData.account_type == 'Admin'))  {
+    next()
+  } else {
+    req.flash("notice", "Access Denied. Please login with an authorized account.")
     return res.redirect("/account/login")
   }
  }

@@ -12,23 +12,27 @@ router.get("/type/:classificationId", utilities.handleErrors(invController.build
 router.get("/detail/:invId", utilities.handleErrors(invController.buildByInvId));
 
 // Route to build management view
-router.get("/", utilities.handleErrors(invController.buildManagement));
+router.get("/", utilities.checkPermission, utilities.handleErrors(invController.buildManagement));
 
 // Route to add classification view
-router.get("/add-classification", utilities.handleErrors(invController.buildAddClassification));
+router.get("/add-classification", utilities.checkPermission, utilities.handleErrors(invController.buildAddClassification));
 
 // Route to add inventory view
-router.get("/add-inventory", utilities.handleErrors(invController.buildAddInventory));
+router.get("/add-inventory", utilities.checkPermission, utilities.handleErrors(invController.buildAddInventory));
 
 // Route to add get view
-router.get("/getInventory/:classification_id", utilities.handleErrors(invController.getInventoryJSON))
+router.get("/getInventory/:classification_id", utilities.checkPermission, utilities.handleErrors(invController.getInventoryJSON))
 
 // Route to edit by inventory_id view
-router.get("/edit/:inv_id", utilities.handleErrors(invController.editByInventoryId));
+router.get("/edit/:inv_id", utilities.checkPermission, utilities.handleErrors(invController.editByInventoryId));
+
+// Route to delete confirmation view
+router.get("/delete/:inv_id", utilities.checkPermission, utilities.handleErrors(invController.deleteByInventoryId));
 
 // Route to add classification
 router.post(
   '/add-classification', 
+  utilities.checkPermission,
   invValidate.classificationRules(),
   invValidate.checkClassificationData,
   utilities.handleErrors(invController.addClassification)
@@ -36,7 +40,8 @@ router.post(
 
 // Route to add inventory
 router.post(
-  '/add-inventory', 
+  '/add-inventory',
+  utilities.checkPermission, 
   invValidate.inventoryRules(),
   invValidate.checkInventoryData,
   utilities.handleErrors(invController.addInventory)
@@ -45,9 +50,16 @@ router.post(
 // Route to update inventory
 router.post(
   "/update/",
+  utilities.checkPermission,
   invValidate.newInventoryRules(),
   invValidate.checkUpdateData,
   utilities.handleErrors(invController.updateInventory)
+)
+
+router.post(
+  "/delete-item",
+  utilities.checkPermission,
+  utilities.handleErrors(invController.deleteInventoryItem)
 )
 
 module.exports = router;

@@ -21,7 +21,7 @@ body {
 
 #top-header {
   font-size: 3rem;
-  height: 80px;
+  height: 65px;
   background-color: var(--backgroundColor);
 }
 
@@ -36,7 +36,7 @@ body {
 
 .siteName a {
   color: black;
-  font-size: 2.5rem;
+  font-size: 2.0rem;
   font-weight: bold;
   text-decoration: none;
   float: left;
@@ -360,7 +360,8 @@ footer {
   border-right: solid 8px var(--invalidColor);
 }
 
-#submit {
+#submit, #submit1, #submit2, #submit3,
+#submit4, #submit5, #submit6 {
   background: var(--backgroundColor);
   color: var(--textColor);
   font-size: 1.25rem;
@@ -393,8 +394,47 @@ footer {
   grid-column: 1/3;
 }
 
-#manage h3 {
-  margin: 0 0 15px 30px;
+.form-manage {
+  grid-row: 3/4;
+  grid-column: 1/3;
+  display: block;
+  text-align: left;
+  width: 350px;
+  border: 2px solid var(--borderColor);
+  border-radius: 6px;
+  background-color: var(--backgroundColor);
+  color: var(--textColor);
+  font-size: 1rem;
+  margin: 0 auto;
+  padding: 10px 20px 20px 20px;
+}
+
+.form-manage h2 {
+  margin: 15px 0 0px 10px;
+}
+
+.form-manage h3 {
+  margin: 0px 0 15px 10px;
+}
+
+.form-manage p {
+  margin: 10px 0 5px 10px;
+}
+
+.form-manage a {
+  display: block;
+  margin: 10px 0 0px 10px;
+}
+
+#inventoryDisplay {
+  margin: 0px 0 0px 10px;
+  line-height: 150%;
+}
+
+.account-forms {
+  margin: 0 auto;
+  grid-row: 3/4;
+  grid-column: 1/3;
 }
 
 

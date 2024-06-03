@@ -18,4 +18,12 @@
   </ul>
 <% } %>
 
-<p>You're logged in!</p>>
+<div id="manage" class="form-manage">
+  <h3>Welcome <%= locals.accountData.account_firstname %></h3>
+  <p>You're logged in!</p>
+  <a title="Click to manage account" href="/account/edit/<%= locals.accountData.account_id %>">Edit Account Information</a>
+  <% if (locals.accountData.account_type == "Admin" || locals.accountData.account_type == "Employee") { %>
+    <h2>Inventory Management</h2>
+    <a title="Click to manage inventory" href="/inv/">Manage Inventory</a>
+    <% } %>
+</div>
