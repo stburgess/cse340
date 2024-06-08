@@ -361,7 +361,7 @@ footer {
 }
 
 #submit, #submit1, #submit2, #submit3,
-#submit4, #submit5, #submit6 {
+#submit4, #submit5, #submit6, #submit7 {
   background: var(--backgroundColor);
   color: var(--textColor);
   font-size: 1.25rem;

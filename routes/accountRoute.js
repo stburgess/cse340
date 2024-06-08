@@ -15,7 +15,10 @@ router.get("/register", utilities.handleErrors(accountController.buildRegister))
 router.get("/", utilities.checkLogin, utilities.handleErrors(accountController.buildAccountManage))
 
 // Route to account edit view
-router.get("/edit/:account_id", utilities.handleErrors(accountController.buildAccountEdit))
+router.get("/edit/:account_id", utilities.checkPermission2, utilities.handleErrors(accountController.buildAccountEdit))
+
+// Route to delete account view
+router.get("/delete/:account_id", utilities.checkPermission2, utilities.handleErrors(accountController.buildAccountDelete))
 
 // Process the logout request
 router.get("/logout", utilities.handleErrors(accountController.accountLogout))
@@ -39,6 +42,7 @@ router.post(
 // Route to process account update request
 router.post(
   "/update",
+  utilities.checkPermission2P,
   regValidate.updateRules(),
   regValidate.checkAccountUpdate,
   utilities.handleErrors(accountController.updateAccount)
@@ -47,9 +51,19 @@ router.post(
 // Route to process password update request
 router.post(
   "/change",
+  utilities.checkPermission2P,
   regValidate.passwordRules(),
   regValidate.checkPasswordChange,
   utilities.handleErrors(accountController.changePassword)
+)
+
+// Route to process accout delete request
+router.post(
+  "/delete",
+  utilities.checkPermission2P,
+  regValidate.deleteAccountRules(),
+  regValidate.checkDeleteAccount,
+  utilities.handleErrors(accountController.deleteAccount)
 )
 
 module.exports = router;

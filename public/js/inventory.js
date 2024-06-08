@@ -39,6 +39,6 @@ function buildInventoryList(data) {
   dataTable += `<td><a href='/inv/delete/${element.inv_id}' title='Click to delete'>Delete</a></td></tr>`; 
  }) 
  dataTable += '</tbody>'; 
- // Display the contents in the Inventory Management view 
+ // Display the contents in the Inventory Management view
  inventoryDisplay.innerHTML = dataTable; 
 }

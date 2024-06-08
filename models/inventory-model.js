@@ -93,7 +93,7 @@ async function updateInventory(inv_id, inv_make, inv_model, inv_year, inv_descri
 /* ***************************
  *  Delete Inventory Item
  * ************************** */
- async function deleteInventoryItem(inv_id) {
+async function deleteInventoryItem(inv_id) {
   try {
     const sql = 'DELETE FROM inventory WHERE inv_id = $1'
     const data = await pool.query(sql, [inv_id])

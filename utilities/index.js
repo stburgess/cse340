@@ -159,6 +159,29 @@ Util.checkJWTToken = (req, res, next) => {
   }
  }
 
+ /* ****************************************
+ *  Authorize account holder or Admin (but not Employee)
+ * ************************************ */
+ Util.checkPermission2 = (req, res, next) => {
+  const account_id = req.params.account_id
+  if (res.locals.loggedin && (res.locals.accountData.account_id == account_id || res.locals.accountData.account_type == 'Admin'))  {
+    next()
+  } else {
+    req.flash("notice", "Access Denied. Log into an account with the required permissions.")
+    return res.redirect("/account/login")
+  }
+ }
+
+ Util.checkPermission2P = (req, res, next) => {
+  const { account_id } = req.body
+  if (res.locals.loggedin && (res.locals.accountData.account_id == account_id || res.locals.accountData.account_type == 'Admin'))  {
+    next()
+  } else {
+    req.flash("notice", "Request Denied. Log into an account with the required permissions.")
+    return res.redirect("/account/login")
+  }
+ }
+
 /* ****************************************
  * Middleware For Handling Errors
  * Wrap other function in this for 

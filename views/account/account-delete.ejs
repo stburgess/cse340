@@ -1,0 +1,34 @@
+<div id="title">
+  <% if (title) { %>
+    <h1>
+      <%= title %>
+    </h1>
+    <% } else { res.redirect('/') } %>
+</div>
+
+<%- messages() %>
+
+<% if (errors) { %>
+  <ul class="error-notice">
+    <% errors.array().forEach(error=> { %>
+      <li>
+        <%= error.msg %>
+      </li>
+    <% }) %>
+  </ul>
+<% } %>
+
+  <form method="post" action="/account/delete" class="form-login">
+    <h3>***Delete Confirmation***</h3>
+    <h3>You want to delete this account?</h3>
+    <hr>
+    <label>First Name<input type="text" name="account_firstname" value="<%= locals.account_firstname %>" readonly id="fname"></label>
+    <label>Last Name<input type="text" name="account_lastname" value="<%= locals.account_lastname %>" readonly id="lname"></label>
+    <label>Email<input type="email" name="account_email" value="<%= locals.account_email %>" readonly id="email2"></label>
+    <p><br></p>
+    <hr>
+    <h3>Enter account password to confirm and then click 'Delete Account'.</h3>
+    <label>Password<input type="password" name="account_password" required pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{12,}$" id="pw2"></label>
+    <input type="submit" value="Delete Account" id="submit7">
+    <input type="hidden" name="account_id" value="<%= locals.accountData.account_id %>">
+  </form>

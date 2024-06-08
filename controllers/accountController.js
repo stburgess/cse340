@@ -163,7 +163,6 @@ async function buildAccountEdit(req, res, next) {
  * ************************************ */
  async function updateAccount (req, res) {
   const {account_firstname, account_lastname, account_email, account_id} = req.body
-  console.log(account_firstname, account_lastname, account_email, account_id)
   const upDateResult = await accountModel.updateAccount(account_firstname, account_lastname, account_email, parseInt(account_id))
   let nav = await utilities.getNav()
   if (upDateResult) {
@@ -219,4 +218,53 @@ async function changePassword(req, res) {
   }
 }
 
-module.exports = {buildLogin, buildRegister, registerAccount, accountLogin, buildAccountManage, accountLogout, buildAccountEdit, updateAccount, changePassword}
+/* ***************************
+ *  Build delete account confirm view
+ * ************************** */
+async function buildAccountDelete(req, res, next) {
+  let nav = await utilities.getNav()
+  const account_id = req.params.account_id
+  const returnData = await accountModel.getAccountById(parseInt(account_id))
+  res.render("account/account-delete", {
+    title: "Delete Account",
+    nav,
+    errors: null,
+    account_firstname: returnData.account_firstname,
+    account_lastname: returnData.account_lastname,
+    account_email: returnData.account_email,
+    account_id: returnData.account_id,
+  })
+  return
+}
+
+/* ****************************************
+ *  Process delete account request
+ * ************************************ */
+async function deleteAccount(req, res, next) {
+  let nav = await utilities.getNav()
+  const { account_id, account_firstname, account_lastname, account_email, account_password } = req.body
+  try {
+    if (await accountModel.deleteAccountById(account_id)) {
+      res.clearCookie("jwt")
+      delete res.accountData
+      req.flash("notice", "Your account has been deleted!")
+      res.redirect("/")
+    } else {
+      req.flash("notice", "Problem encountered while trying to delete account.")
+      res.status(500).render("account/account-delete", {
+        title: "Delete Account",
+        nav,
+        account_id,
+        account_firstname,
+        account_lastname,
+        account_email,
+        errors: null,
+      })
+    } 
+    return 
+  } catch (error) {
+    return new Error('Error while trying to delete account')
+  }
+}
+
+module.exports = {buildLogin, buildRegister, registerAccount, accountLogin, buildAccountManage, accountLogout, buildAccountEdit, updateAccount, changePassword, buildAccountDelete, deleteAccount}
